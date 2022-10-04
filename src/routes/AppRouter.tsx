@@ -16,6 +16,18 @@ const AppRouter = () => {
 							/>
 						)
 				)}
+
+				{/* 사용자 인증 관련 (로그인, 회원가입 등) */}
+				{routes.auth.map(
+					(route, index) =>
+						route && (
+							<Route
+								key={index}
+								path={route.path}
+								element={<route.element />}
+							/>
+						)
+				)}
 			</Routes>
 		</BrowserRouter>
 	);
