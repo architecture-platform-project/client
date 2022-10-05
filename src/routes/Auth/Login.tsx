@@ -1,14 +1,34 @@
+import axios from 'axios';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
 	const navigate = useNavigate();
-	const [username, setUsername] = useState('');
+	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 
-	const login = (e: FormEvent) => {
+	const login = async (e: FormEvent) => {
 		e.preventDefault();
-		console.log('login');
+		if (email && password) {
+			try {
+				await axios(`${process.env.REACT_APP_API_URL}/users/login`, {
+					method: 'POST',
+					data: {
+						email,
+						password,
+					},
+				});
+				// 성공 시 홈으로 이동
+				// 액세스 토큰 -> 세션 스토리지
+				// 리프레시 토큰 -> 로컬 스토리지
+
+				// 실패 시 메세지와 함께 alert
+			} catch (e) {
+				console.log(e);
+			}
+		} else {
+			alert('이메일과 비밀번호를 모두 입력해주세요.');
+		}
 	};
 
 	return (
@@ -17,10 +37,10 @@ const Login = () => {
 			<fieldset>
 				<label htmlFor="text">아이디</label>
 				<input
-					id="username"
-					type="username"
-					value={username}
-					onChange={(e) => setUsername(e.target.value)}
+					id="email"
+					type="email"
+					value={email}
+					onChange={(e) => setEmail(e.target.value)}
 				/>
 			</fieldset>
 
@@ -51,8 +71,7 @@ const Login = () => {
 			</fieldset>
 
 			{/* 아이디, 비밀번호 찾기 */}
-			<button type="button">아이디 찾기</button>
-			<button type="button">비밀번호 찾기</button>
+			<button type="button">아이디/비밀번호 찾기</button>
 			<button type="button" onClick={() => navigate('/signup')}>
 				회원가입
 			</button>
