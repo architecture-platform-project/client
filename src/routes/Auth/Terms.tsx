@@ -1,13 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-type Terms = {
+type TermsType = {
 	[key: string]: boolean;
 };
 
 const Terms = () => {
 	const navigate = useNavigate();
-	const [terms, setTerms] = useState<Terms>({
+	const [terms, setTerms] = useState<TermsType>({
 		condition1: false,
 		condition2: false,
 		condition3: false,
