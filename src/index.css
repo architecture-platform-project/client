@@ -140,6 +140,10 @@ input {
 	outline: none;
 }
 
+select {
+	appearance: none;
+}
+
 button {
 	border: 1px solid purple;
 	border-radius: 8px;
