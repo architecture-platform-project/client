@@ -119,14 +119,13 @@ const SignUp = () => {
 
 	return (
 		<>
-			<form className="flex flex-col max-w-md p-12 m-auto" onSubmit={signUp}>
+			<form onSubmit={signUp}>
 				{/* 이메일 */}
 				<fieldset>
 					<label htmlFor="email">이메일</label>
 					<input
 						id="email"
 						type="email"
-						className="w-full"
 						onChange={(e) => setEmail(e.target.value)}
 					/>
 					<button type="button">중복 확인</button>
@@ -282,7 +281,7 @@ const SignUp = () => {
 
 				<button type="submit">회원가입</button>
 			</form>
-			<div className="absolute" onClick={() => setBizMode((prev) => !prev)}>
+			<div onClick={() => setBizMode((prev) => !prev)}>
 				{bizMode ? '개인' : '법인'}
 			</div>
 		</>

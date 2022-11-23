@@ -1,6 +1,9 @@
 import axios from 'axios';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import iconZium from 'assets/svg/logo.svg';
+import { DefaultInput } from 'components/Inputs';
+import { DefaultButton } from 'components/Buttons';
 
 const Login = () => {
 	const navigate = useNavigate();
@@ -32,52 +35,50 @@ const Login = () => {
 	};
 
 	return (
-		<form className="flex flex-col max-w-lg p-12 mx-auto" onSubmit={login}>
-			{/* 아이디 */}
-			<fieldset>
-				<label htmlFor="text">아이디</label>
-				<input
-					id="email"
-					type="email"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
-				/>
-			</fieldset>
+		<div>
+			<img src={iconZium} />
+			<form onSubmit={login}>
+				<div>
+					{/* 이메일 */}
+					<DefaultInput
+						label="이메일"
+						id="email"
+						type="email"
+						value={email}
+						placeholder="이메일을 입력하세요"
+						onChange={(e: any) => setEmail(e.target.value)}
+					/>
 
-			{/* 비밀번호 */}
-			<fieldset>
-				<label htmlFor="password">비밀번호</label>
-				<input
-					id="password"
-					type="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
-				/>
-			</fieldset>
+					{/* 비밀번호 */}
+					<DefaultInput
+						label="비밀번호"
+						id="password"
+						type="password"
+						value={password}
+						placeholder="비밀번호를 입력하세요"
+						onChange={(e: any) => setPassword(e.target.value)}
+					/>
+				</div>
 
-			{/* 로그인 버튼 */}
-			<button type="submit">로그인</button>
+				{/* 로그인 버튼 */}
+				<div>
+					<DefaultButton
+						type="submit"
+						text="로그인"
+						onClick={() => console.log('login')}
+					/>
 
-			{/* 아이디 저장 - 체크박스 */}
-			<fieldset className="space-x-2">
-				<input id="save-id" type="checkbox" />
-				<label htmlFor="save-id">아이디 저장</label>
-			</fieldset>
+					{/* 회원가입 버튼 */}
+					<DefaultButton
+						type="button"
+						text="회원가입"
+						onClick={() => navigate('/signup')}
+					/>
+				</div>
 
-			{/* 자동 로그인 - 체크박스 */}
-			<fieldset className="space-x-2">
-				<input id="auto-login" type="checkbox" />
-				<label htmlFor="auto-login">자동 로그인</label>
-			</fieldset>
-
-			{/* 아이디, 비밀번호 찾기 */}
-			<button type="button">아이디/비밀번호 찾기</button>
-			<button type="button" onClick={() => navigate('/signup')}>
-				회원가입
-			</button>
-			<button type="button">구글</button>
-			<button type="button">네이버</button>
-		</form>
+				<div>비밀번호를 잊으셨나요?</div>
+			</form>
+		</div>
 	);
 };
 
